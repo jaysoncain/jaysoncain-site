@@ -1,0 +1,121 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/loans",
+      "destination": "/#loans",
+      "permanent": false
+    },
+    {
+      "source": "/process",
+      "destination": "/#process",
+      "permanent": false
+    },
+    {
+      "source": "/calculator",
+      "destination": "/#calculator",
+      "permanent": false
+    },
+    {
+      "source": "/resources",
+      "destination": "/#resources",
+      "permanent": false
+    },
+    {
+      "source": "/checklist",
+      "destination": "/#checklist",
+      "permanent": false
+    },
+    {
+      "source": "/faq",
+      "destination": "/#faq",
+      "permanent": false
+    },
+    {
+      "source": "/agents",
+      "destination": "/#agents",
+      "permanent": false
+    },
+    {
+      "source": "/updates",
+      "destination": "/#updates",
+      "permanent": false
+    },
+    {
+      "source": "/quote",
+      "destination": "/#quote",
+      "permanent": false
+    },
+    {
+      "source": "/about",
+      "destination": "/#about",
+      "permanent": false
+    },
+    {
+      "source": "/apply",
+      "destination": "/#quote",
+      "permanent": false
+    },
+    {
+      "source": "/subscribe",
+      "destination": "/#updates",
+      "permanent": false
+    },
+    {
+      "source": "/newsletter",
+      "destination": "/#updates",
+      "permanent": false
+    },
+    {
+      "source": "/quote/:purpose",
+      "destination": "/?purpose=:purpose#quote",
+      "permanent": false
+    },
+    {
+      "source": "/match",
+      "destination": "/#match",
+      "permanent": false
+    },
+    {
+      "source": "/explainers",
+      "destination": "/#explainers",
+      "permanent": false
+    },
+    {
+      "source": "/why",
+      "destination": "/#why",
+      "permanent": false
+    },
+    {
+      "source": "/find-your-loan",
+      "destination": "/#match",
+      "permanent": false
+    },
+    {
+      "source": "/book",
+      "destination": "/schedule",
+      "permanent": false
+    },
+    {
+      "source": "/call",
+      "destination": "/schedule",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
