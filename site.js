@@ -245,6 +245,11 @@
     }
     try { var p = new URLSearchParams(location.search).get('purpose'); if (p) setPurpose(PURPOSES[p.toLowerCase()] || p); } catch (x) {}
     renderMatch(); calc(); dscr(); bankStmt(); reveal(); chat(); sched(); if (!window.__jcSL) { window.__jcSL = 1; secondLook(); }
+    bind('hero-form', 'hero-thanks', function (f) {
+      var ep = f.getAttribute('action');
+      if (placeholder(ep, 'FORMSPREE_ENDPOINT')) return true;
+      return fetch(ep, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } }).then(function (r) { return r.ok; });
+    });
     bind('quote-form', 'quote-thanks', function (f) {
       var ep = f.getAttribute('action');
       if (placeholder(ep, 'FORMSPREE_ENDPOINT')) return true;
