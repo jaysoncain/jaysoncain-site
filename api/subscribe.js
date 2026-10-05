@@ -44,9 +44,10 @@ module.exports = async (req, res) => {
 
   let b = req.body || {};
   if (typeof b === 'string') { try { b = JSON.parse(b); } catch (e) { b = {}; } }
-  if (b.email_address_check) return res.status(200).json({ ok: true }); // honeypot
-
   const email = String(b.EMAIL || '').trim().toLowerCase();
+  // Honeypot: bots fill it with junk. Browser autofill may copy the visitor's own email into it, so allow that.
+  const hp = String(b.email_address_check || '').trim().toLowerCase();
+  if (hp && hp !== email && !/@/.test(hp)) return res.status(200).json({ ok: true });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ ok: false, error: 'email' });
 
   const type = b.type === 'callback' ? 'callback' : 'newsletter';
