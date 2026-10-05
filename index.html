@@ -176,7 +176,7 @@ nav div::-webkit-scrollbar{display:none}
         <p style="font-size:20px;font-weight:700;letter-spacing:-0.01em">See which loans may fit</p>
         <p style="font-size:14px;color:#5A645E">About 60 seconds. No credit check. I'll reply myself.</p>
       </div>
-      <form id="hero-form" action="FORMSPREE_ENDPOINT" method="post" style="display:flex;flex-direction:column;gap:12px">
+      <form id="hero-form" action="/api/subscribe" method="post" style="display:flex;flex-direction:column;gap:12px">
         <input type="hidden" name="source" value="Hero form">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px">
           <div style="display:flex;flex-direction:column;gap:5px"><label for="h-name" style="font-size:13px;font-weight:600">Full name</label><input class="x14" id="h-name" name="name" type="text" autocomplete="name" required style="width:100%;padding:11px 12px;font:inherit;font-size:15.5px;color:#16211C;background:#fff;border:1px solid #CFC9BC;border-radius:8px;outline:none"></div>
@@ -431,6 +431,50 @@ nav div::-webkit-scrollbar{display:none}
         </div>
       </div>
     </div>
+    <div id="downloads" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:110px">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px">
+        <h3 style="font-size:22px;font-weight:600;letter-spacing:-0.01em">Free downloads</h3>
+        <span style="font-size:14px;color:#5A645E">Sign up below and I’ll email you all four.</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px">
+        <article style="background:#fff;border:1px solid #DDD8CD;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/9;background:#E6ECE7 url('/images/invest-palm-home.jpg') center/cover"></div>
+          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+            <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1E4634">Investors · PDF</p>
+            <h4 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em">LA investor financing checklist</h4>
+            <p style="font-size:15px;color:#3F4A44;flex:1">What lenders look at on a rental: DSCR, reserves, LLCs, and the documents to have ready.</p>
+            <a href="#updates" style="align-self:flex-start;margin-top:6px;color:#1E4634;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1.5px solid #1E4634;padding-bottom:2px">Get it free by email ↓</a>
+          </div>
+        </article>
+        <article style="background:#fff;border:1px solid #DDD8CD;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/9;background:#E6ECE7 url('/images/home-craftsman.jpg') center/cover"></div>
+          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+            <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1E4634">Investors · Worksheet</p>
+            <h4 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em">DSCR rent-coverage worksheet</h4>
+            <p style="font-size:15px;color:#3F4A44;flex:1">Plug in rent, taxes, insurance and HOA to see how a property's numbers stack up. Estimates only.</p>
+            <a href="#updates" style="align-self:flex-start;margin-top:6px;color:#1E4634;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1.5px solid #1E4634;padding-bottom:2px">Get it free by email ↓</a>
+          </div>
+        </article>
+        <article style="background:#fff;border:1px solid #DDD8CD;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/9;background:#E6ECE7 url('/images/home-twostory.jpg') center/cover"></div>
+          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+            <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1E4634">Self-employed · PDF</p>
+            <h4 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em">Bank statement loan prep guide</h4>
+            <p style="font-size:15px;color:#3F4A44;flex:1">How lenders read your deposits, what trips people up, and how to get your statements in order.</p>
+            <a href="#updates" style="align-self:flex-start;margin-top:6px;color:#1E4634;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1.5px solid #1E4634;padding-bottom:2px">Get it free by email ↓</a>
+          </div>
+        </article>
+        <article style="background:#fff;border:1px solid #DDD8CD;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/9;background:#E6ECE7 url('/images/refi-modern-home.jpg') center/cover"></div>
+          <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+            <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1E4634">Everyone · Worksheet</p>
+            <h4 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em">Loan Estimate comparison sheet</h4>
+            <p style="font-size:15px;color:#3F4A44;flex:1">Line up two quotes side by side and see where the fees actually differ. Already have a quote? Send it for a second look.</p>
+            <a href="#updates" style="align-self:flex-start;margin-top:6px;color:#1E4634;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1.5px solid #1E4634;padding-bottom:2px">Get it free by email ↓</a>
+          </div>
+        </article>
+      </div>
+    </div>
     <div id="faq" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:110px;max-width:860px">
       <h3 style="font-size:22px;font-weight:600;letter-spacing:-0.01em">Common questions</h3>
       <div style="display:flex;flex-direction:column;border-top:1px solid #DDD8CD">
@@ -480,8 +524,9 @@ nav div::-webkit-scrollbar{display:none}
     </div>
   </div>
 </section>
-<section id="agents" aria-labelledby="agents-h" style="background:#16211C;color:#F6F4EF;scroll-margin-top:110px">
-  <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,104px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,6vw,72px);align-items:center">
+<section id="agents" aria-labelledby="agents-h" style="position:relative;background-color:#16211C;background-image:url('/images/aerial-neighborhood.jpg');background-size:cover;background-position:center;color:#F6F4EF;scroll-margin-top:110px">
+  <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(22,33,28,0.94) 0%, rgba(22,33,28,0.82) 100%)"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,104px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,6vw,72px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p style="font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#D9C29A">For real estate agents</p>
       <h2 id="agents-h" style="font-size:clamp(30px,4vw,44px);line-height:1.1;letter-spacing:-0.025em;font-weight:700;text-wrap:balance">A loan partner who keeps your deals moving</h2>
@@ -496,11 +541,12 @@ nav div::-webkit-scrollbar{display:none}
     </div>
   </div>
 </section>
-<section id="updates" aria-labelledby="updates-h" style="scroll-margin-top:110px;padding:clamp(64px,9vw,104px) clamp(20px,4vw,40px) 0">
-  <div style="max-width:1120px;margin:0 auto;background:#E6ECE7;border-radius:16px;padding:clamp(32px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;align-items:center">
+<section id="updates" aria-labelledby="updates-h" style="position:relative;scroll-margin-top:110px;padding:clamp(64px,9vw,120px) clamp(20px,4vw,40px);background-color:#E6ECE7;background-image:url('/images/home-spanish.jpg');background-size:cover;background-position:center">
+  <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(22,33,28,0.35)"></div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;background:#F6F4EF;box-shadow:0 20px 60px rgba(22,33,28,0.25);border-radius:16px;padding:clamp(32px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;align-items:center">
     <div style="display:flex;flex-direction:column;gap:12px">
       <h2 id="updates-h" style="font-size:clamp(26px,3.2vw,34px);line-height:1.15;letter-spacing:-0.02em;font-weight:700;text-wrap:balance">Free real estate and mortgage market updates</h2>
-      <p style="font-size:17px;color:#3F4A44;text-wrap:pretty">Rates, loan programs and what's moving in the Los Angeles market, in plain English. Unsubscribe anytime.</p>
+      <p style="font-size:17px;color:#3F4A44;text-wrap:pretty">Rates, loan programs and what's moving in the Los Angeles market, in plain English. Sign up and I'll send you the four free guides. Unsubscribe anytime.</p>
     </div>
     <div>
       <form id="news-form" action="/api/subscribe" method="post" style="display:flex;flex-direction:column;gap:12px">
@@ -545,7 +591,7 @@ nav div::-webkit-scrollbar{display:none}
       <a class="x56" href="/schedule" style="align-self:flex-start;margin-top:6px;border:1.5px solid #1E4634;color:#1E4634;text-decoration:none;font-weight:600;font-size:15px;padding:11px 18px;border-radius:8px">Rather talk first? Schedule a call →</a>
     </div>
     <div style="background:#fff;border:1px solid #DDD8CD;border-radius:14px;padding:clamp(24px,4vw,40px)">
-      <form id="quote-form" action="FORMSPREE_ENDPOINT" method="post" style="display:flex;flex-direction:column;gap:18px">
+      <form id="quote-form" action="/api/subscribe" method="post" style="display:flex;flex-direction:column;gap:18px">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:18px">
           <div style="display:flex;flex-direction:column;gap:6px">
             <label for="q-name" style="font-size:14px;font-weight:600">First name <span aria-hidden="true" style="color:#1E4634">*</span></label>
@@ -699,6 +745,6 @@ nav div::-webkit-scrollbar{display:none}
   <div id="chat-teaser" style="display:none;align-items:center;gap:8px;background:#fff;border:1px solid #DDD8CD;border-radius:12px;padding:10px 12px;box-shadow:0 10px 30px rgba(22,33,28,0.14);font-size:14px;max-width:260px"><span>Questions about a loan? I can call you.</span><button id="chat-teaser-x" type="button" aria-label="Dismiss" style="font:inherit;background:transparent;border:0;color:#5A645E;font-size:18px;cursor:pointer;padding:0 2px">×</button></div>
   <button class="x80" id="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel" style="font:inherit;display:flex;align-items:center;gap:10px;background:#1E4634;color:#fff;border:0;border-radius:999px;padding:12px 18px 12px 14px;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 12px 30px rgba(30,70,52,0.35)"><span aria-hidden="true" style="position:relative;width:10px;height:10px;border-radius:50%;background:#9FE0B5"><span style="position:absolute;inset:0;border-radius:50%;background:#9FE0B5;animation:jcpulse 1.8s ease-out infinite"></span></span>Talk to Jayson</button>
 </div>
-<script src="/site.js?v=3" defer></script>
+<script src="/site.js?v=4" defer></script>
 </body>
 </html>

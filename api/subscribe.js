@@ -44,16 +44,18 @@ module.exports = async (req, res) => {
 
   let b = req.body || {};
   if (typeof b === 'string') { try { b = JSON.parse(b); } catch (e) { b = {}; } }
-  const email = String(b.EMAIL || '').trim().toLowerCase();
+  const email = String(b.EMAIL || b.email || '').trim().toLowerCase();
   // Honeypot: bots fill it with junk. Browser autofill may copy the visitor's own email into it, so allow that.
-  const hp = String(b.email_address_check || '').trim().toLowerCase();
+  const hp = String(b.email_address_check || b._gotcha || '').trim().toLowerCase();
   if (hp && hp !== email && !/@/.test(hp)) return res.status(200).json({ ok: true });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ ok: false, error: 'email' });
 
-  const type = b.type === 'callback' ? 'callback' : 'newsletter';
-  const first = String(b.FIRSTNAME || '').trim().slice(0, 80);
-  const last = String(b.LASTNAME || '').trim().slice(0, 80);
-  let phone = String(b.SMS || '').replace(/\D/g, '');
+  const type = ['callback', 'quote'].includes(b.type) ? b.type : 'newsletter';
+  let first = String(b.FIRSTNAME || b.first_name || '').trim();
+  let last = String(b.LASTNAME || b.last_name || '').trim();
+  if (!first && b.name) { const p = String(b.name).trim().split(/\s+/); first = p.shift() || ''; last = last || p.join(' '); }
+  first = first.slice(0, 80); last = last.slice(0, 80);
+  let phone = String(b.SMS || b.phone || '').replace(/\D/g, '');
   if (phone.length === 11 && phone[0] === '1') phone = phone.slice(1);
 
   const attributes = {};
@@ -85,6 +87,16 @@ module.exports = async (req, res) => {
           to: [{ email, name: [first, last].join(' ').trim() || undefined }],
           subject: 'Your free guides from Jayson Cain',
           htmlContent: welcomeHtml(first),
+        });
+      } else if (type === 'quote') {
+        const skip = ['type', '_gotcha', 'email_address_check', 'consent'];
+        const rows = Object.keys(b).filter((k) => !skip.includes(k) && String(b[k]).trim())
+          .map((k) => `<tr><td style="padding:4px 12px 4px 0;color:#5A645E;vertical-align:top">${esc(k.replace(/_/g, ' '))}</td><td style="padding:4px 0"><strong>${esc(b[k]).replace(/\n/g, '<br>')}</strong></td></tr>`).join('');
+        await brevo('/smtp/email', {
+          sender: from, replyTo: { email },
+          to: [{ email: process.env.NOTIFY_EMAIL || 'lending@jaysoncain.com' }],
+          subject: 'New inquiry: ' + ([first, last].join(' ').trim() || email) + (b.loan_purpose ? ' · ' + b.loan_purpose : ''),
+          htmlContent: `<div style="font-family:Helvetica,Arial,sans-serif;font-size:15px"><p>New inquiry from jaysoncain.com</p><table>${rows}</table><p style="color:#5A645E;font-size:13px">Consent to contact: ${b.consent ? 'yes' : 'no'}. Reply to this email to answer them directly.</p></div>`,
         });
       } else {
         const rows = [['Name', first + ' ' + last], ['Phone', phone], ['Email', email], ['Topic', b.TOPIC], ['Best time', b.BEST_TIME]]
