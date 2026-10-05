@@ -38,6 +38,13 @@
     if (!ep || ep.indexOf(name) !== -1) { console.warn(name + ' is still a placeholder.'); return true; }
     return false;
   }
+  function toApi(f, type) {
+    var host = location.hostname;
+    if (!/jaysoncain\.com$|vercel\.app$/.test(host)) { console.warn('Preview: /api/subscribe only runs on the live site.'); return true; }
+    var data = { type: type };
+    new FormData(f).forEach(function (v, k) { data[k] = v; });
+    return fetch('/api/subscribe', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) }).then(function (r) { return r.ok; });
+  }
   function setPurpose(v) { var s = $('q-purpose'); if (s && v) s.value = v; }
 
   /* ---------- Loan matcher ---------- */
@@ -204,13 +211,7 @@
     } catch (x) {}
     var tx = $('chat-teaser-x'); if (tx) tx.addEventListener('click', function () { teaser.style.display = 'none'; });
     bind('chat-form', 'chat-thanks', function (f) {
-      var ep = f.getAttribute('action');
-      if (placeholder(ep, 'BREVO_CALLBACK_ENDPOINT')) return true;
-      var fd = new FormData(f);
-      var ph = String(fd.get('SMS') || '').replace(/\D/g, '');
-      if (ph.length === 11 && ph[0] === '1') ph = ph.slice(1);
-      fd.set('SMS', ph);
-      return fetch(ep, { method: 'POST', body: fd, mode: 'no-cors' }).then(function () { return true; });
+      return toApi(f, 'callback');
     });
   }
   function sched() {
@@ -256,9 +257,7 @@
       return fetch(ep, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } }).then(function (r) { return r.ok; });
     });
     bind('news-form', 'news-thanks', function (f) {
-      var ep = f.getAttribute('action');
-      if (placeholder(ep, 'BREVO_FORM_ENDPOINT')) return true;
-      return fetch(ep, { method: 'POST', body: new FormData(f), mode: 'no-cors' }).then(function () { return true; });
+      return toApi(f, 'newsletter');
     });
   }
   window.jcInit = init;
